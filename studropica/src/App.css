@@ -1,3 +1,7 @@
-#startPage{
+#fullPage{
+    height: 100%;
+}
+
+#secondPage{
     height: 100%;
 }

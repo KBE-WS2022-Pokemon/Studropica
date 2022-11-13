@@ -20,38 +20,30 @@ import chariteImage from "../images/charite.png";
 import tuImage from "../images/tu_berlin.png";
 import codeImage from "../images/code.png";
 
-const MainStartScreen = () => {
+const MainSecondScreen = () => {
   return (
-    <Stack gap={5} className="mt-5">
+    <Stack gap={4} className="mt-5">
       <div className="text-center mt-5">
-        <h1>Mind Enhancement For Better Studies</h1>
+        <h1>Our Latest Arrivals</h1>
       </div>
       <div className="text-center">
-        With thoroughly operated research we can present your our selection of
-        most promising nootropics. Its time for performance!
+        Convince yourself and finally achieve the breakthrough!
       </div>
       <div className="text-center">
         <Button variant="outline-dark" size="lg">
           Shop All
         </Button>
       </div>
-      {/*adding image from same folder*/}
-      <div className="text-center">
-        <Image src={mainImage} height={400} width={1000} />
-      </div>
       <div className="text-center">
         <Row className="justify-content-center">
-          <Col>
-            <Image src={htwImage} width={100} />
+          <Col className="mt-5">
+            <Image src={mainImage} height={400} width={350} />
           </Col>
           <Col>
-            <Image src={chariteImage} width={100} />
+            <Image src={mainImage} height={400} width={350} />
           </Col>
-          <Col>
-            <Image src={tuImage} width={100} />
-          </Col>
-          <Col>
-            <Image src={codeImage} width={100} />
+          <Col className="mt-5">
+            <Image src={mainImage} height={400} width={350} />
           </Col>
         </Row>
       </div>
@@ -59,4 +51,4 @@ const MainStartScreen = () => {
   );
 };
 
-export default MainStartScreen;
+export default MainSecondScreen;

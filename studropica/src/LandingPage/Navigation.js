@@ -15,8 +15,8 @@ import "./Navigation.css";
 
 const Navigation = () => {
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    <Navbar bg="light" expand="lg" className="fixed-top">
+      <Navbar.Brand href="#home">Studropica</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">

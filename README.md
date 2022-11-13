@@ -14,8 +14,19 @@
 - [x] add margin to top headline
 - [x] make button smaller 
 - [x] add sample image 
-- [ ] add universities 
-- [ ] make sure that this is the start screen 
+- [x] add universities 
+- [x] make sure that this is the start screen 
+- [x] add new 100% section and call it starpagesecondpage
+- [x] make navbar fix during scrolling
+- [x] make navbar not fixed on the website
+- [x] add header, subheader, shop all button
+- [x] add three images 
+- [x] make image shift 
+- [ ] add signup for our newsletter at same width of ecommerce
+- [ ] subdescription
+- [ ] email adress signup field
+- [ ] Help header and contact us as sub
+- [ ] about header and rest as sub
 
 # Notes 
 
@@ -33,3 +44,4 @@ how to display the same starting page no matter which device react
 how to make view always to whole start page react
 
 in app.js i can put start screen into div with id and than i can set size always to 100%
+credits 
