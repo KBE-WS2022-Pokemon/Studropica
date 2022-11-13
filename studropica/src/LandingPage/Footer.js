@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Stack,
-  Figure,
-  Image,
-  InputGroup,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Stack, InputGroup, Form } from "react-bootstrap";
+
 import "./Footer.css";
 
 const MainStartScreen = () => {
@@ -19,10 +10,10 @@ const MainStartScreen = () => {
         <Stack gap={3}>
           <h2>Sign up for our newsletter</h2>
           <p>
-            Be the first to know about our special offers, new product<br /> launches,
-            and events.
+            Be the first to know about our special offers, new product <br />{" "}
+            launches, and events.
           </p>
-          <InputGroup className="mb-3">
+          <InputGroup className="mb-5" id="widthInputGroup">
             <Form.Control
               placeholder="Email Address"
               aria-label="Email Address"
@@ -40,8 +31,9 @@ const MainStartScreen = () => {
       </Col>
       <Col className="mt-5">
         <Stack gap={3}>
-          <h6>Help</h6>
-          <p>Contact Us</p>{" "}
+          <h6>About</h6>
+          <p>About Us</p>
+          <p>Explore Our Stories</p>
         </Stack>
       </Col>
     </Row>

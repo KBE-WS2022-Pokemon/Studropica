@@ -22,11 +22,20 @@
 - [x] add header, subheader, shop all button
 - [x] add three images 
 - [x] make image shift 
-- [ ] add signup for our newsletter at same width of ecommerce
-- [ ] subdescription
-- [ ] email adress signup field
-- [ ] Help header and contact us as sub
-- [ ] about header and rest as sub
+- [x] add signup for our newsletter at same width of ecommerce
+- [x] subdescription
+- [x] email adress signup field
+- [x] Help header and contact us as sub
+- [x] about header and rest as sub
+- [x] refactor and clean code
+- [x] create folder ProductPage
+- [x] add image to product card
+- [x] put everything more close together 
+- [x] add 6 products
+- [x] add nav
+- [ ] add load more products button
+- [ ] make button functional and when clicking button display next 3 products 
+- [ ] connect shop all buttons and shop from navbar with shop page
 
 # Notes 
 
@@ -45,3 +54,6 @@ how to make view always to whole start page react
 
 in app.js i can put start screen into div with id and than i can set size always to 100%
 credits 
+I am good to go. now thinking of what to do next. could start with the shopping page but could also refactor some code.
+
+for now I just go with the grey color I would say and can later still make changes in color i would say

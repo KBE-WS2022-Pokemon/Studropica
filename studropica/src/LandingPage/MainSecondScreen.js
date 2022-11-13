@@ -1,24 +1,6 @@
-// create a headline subheadline and button and center everything with bootstrap
-
 import React from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Stack,
-  Figure,
-  Image,
-} from "react-bootstrap";
-//import "./MainStartScreen.css";
-//import downloas.png from "./download.png";
-//need to add horizontal line in vertical stack
-
+import { Button, Row, Col, Stack, Image } from "react-bootstrap";
 import mainImage from "../images/grey.png";
-import htwImage from "../images/htw_berlin.png";
-import chariteImage from "../images/charite.png";
-import tuImage from "../images/tu_berlin.png";
-import codeImage from "../images/code.png";
 
 const MainSecondScreen = () => {
   return (

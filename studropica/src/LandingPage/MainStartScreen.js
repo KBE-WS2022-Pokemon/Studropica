@@ -1,18 +1,5 @@
-// create a headline subheadline and button and center everything with bootstrap
-
 import React from "react";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Stack,
-  Figure,
-  Image,
-} from "react-bootstrap";
-//import "./MainStartScreen.css";
-//import downloas.png from "./download.png";
-//need to add horizontal line in vertical stack
+import { Button, Row, Col, Stack, Image } from "react-bootstrap";
 
 import mainImage from "../images/grey.png";
 import htwImage from "../images/htw_berlin.png";
@@ -35,7 +22,6 @@ const MainStartScreen = () => {
           Shop All
         </Button>
       </div>
-      {/*adding image from same folder*/}
       <div className="text-center">
         <Image src={mainImage} height={400} width={1000} />
       </div>

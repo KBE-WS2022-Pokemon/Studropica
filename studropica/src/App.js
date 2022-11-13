@@ -1,17 +1,13 @@
 import "./App.css";
-// test.js
 import Navigation from "./LandingPage/Navigation";
 import MainStartScreen from "./LandingPage/MainStartScreen";
 import MainSecondScreen from "./LandingPage/MainSecondScreen";
 import Footer from "./LandingPage/Footer";
-
-// here I render now only some div tag what i want to do instead is creating the same div tag in navbar and than I want to render navbar as an component in App.js
-//
+import Main from "./ShopPage/Main";
 
 const App = () => {
   return (
-    // render navbar component
-    <div>
+    /*<div>
       <div>
         <Navigation />
       </div>
@@ -22,8 +18,12 @@ const App = () => {
         <MainSecondScreen />
       </div>
       <div id="fullPage">
-        <Footer/>
+        <Footer />
       </div>
+    </div>*/
+    <div>
+      <Navigation />
+      <Main />
     </div>
   );
 };

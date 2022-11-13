@@ -1,16 +1,6 @@
-// create navbar with bootstrap
 // todo when navbar collapses bug with card item
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  Container,
-  Button,
-  FormControl,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import "./Navigation.css";
 
 const Navigation = () => {
