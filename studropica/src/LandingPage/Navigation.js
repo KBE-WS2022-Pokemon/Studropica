@@ -1,4 +1,5 @@
 // create navbar with bootstrap
+// todo when navbar collapses bug with card item
 import React from "react";
 import {
   Navbar,
@@ -18,15 +19,19 @@ const Navigation = () => {
       <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="me-auto">
           <Nav.Link href="#shop">Shop</Nav.Link>
-          <Nav.Link href="#stories">Stories</Nav.Link>
-          <Nav.Link href="#about">About</Nav.Link>
-          <Form id="form" className='me-5'>
-            <FormControl type="text" placeholder="Search"/>
-          </Form>
 
-          <Nav.Link href="#cart" id="test" className='ms-5'>
+          <Nav.Link href="#stories">Stories</Nav.Link>
+
+          <Nav.Link href="#about">About</Nav.Link>
+
+          <Form id="form" className="me-5">
+            <FormControl type="text" placeholder="Search" />
+          </Form>
+        </Nav>
+        <Nav className="me-auto">
+          <Nav.Link href="#cart" id="test" className="ms-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -39,9 +44,7 @@ const Navigation = () => {
             </svg>
           </Nav.Link>
           <Navbar.Text>0</Navbar.Text>
-          <Nav.Link href="#login" className="test">
-            Login
-          </Nav.Link>
+          <Nav.Link href="#login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

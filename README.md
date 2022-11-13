@@ -3,14 +3,33 @@
 - [x] doing some open research
 - [x] do some research on how the architecture should be. app.js which is rendering all components?
 - [x] fix error with mising marging and add margin
-- [ ] Add shop, stories and about 
-- [ ] add a searchbar
-- [ ] search for a svg icon for basket and add it to images
-- [ ] add basket icon and standard number 0
-- [ ] add line below header
+- [x] Add shop, stories and about 
+- [x] add a searchbar
+- [x] search for a svg icon for basket and add it to images
+- [x] add basket icon and standard number 0
+- [x] make collapse for all items but not brand working
+- [x] add "Mind enhancement for better studies" header
+- [x] add subtext
+- [x] add button
+- [x] add margin to top headline
+- [x] make button smaller 
+- [x] add sample image 
+- [ ] add universities 
+- [ ] make sure that this is the start screen 
 
 # Notes 
 
 - relative new video about how to build e commerce shop with react https://www.youtube.com/watch?v=1DklrGoAxDE
 either i do navbar or i 
 - can now add all the fields which i need or i fix the error with the margin# Studropica
+next is to add the body. 
+how to display 4 images with equal size in one row react
+row is not in the middle..?
+
+how to make a user see always always the same starting page no matter which device react
+
+how to display the same starting page no matter which device react
+
+how to make view always to whole start page react
+
+in app.js i can put start screen into div with id and than i can set size always to 100%
