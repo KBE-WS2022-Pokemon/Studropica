@@ -1,70 +1,23 @@
-import React, {useState} from "react";
-import { Button, Image, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Image, Card, Row, Col } from "react-bootstrap";
 import mainImage from "../images/grey.png";
 import "./Main.css";
 
-
-//on a button click hide the button itself and display an image
-const Main = () => {
+const ShopPage = () => {
   const [showImage, setShowImage] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const [count, setCount] = useState(6);
 
   const handleClick = () => {
     setShowImage(true);
+    setShowButton(false);
+    setCount(count + 3);
   };
 
   return (
-    <div>
-      <div>
-        <Button onClick={handleClick}>Click me</Button>
-      </div>
-      <div>
-        {showImage && <Image src={mainImage} />}
-      </div>
-    </div>
-  );
-};
-
-
-
-
-
-export default Main;
-
-
-
-
-
-
-
-
-
-/*
-const Main = (props) => {
-
-  const cars = props.cars;
-  return (
-    <>
-      <h1>Garage</h1>
-      {cars.length > 0 &&
-        <h2>
-          You have {cars.length} cars in your garage.
-        </h2>
-      }
-    </>
-  );
-}
-const cars = ['Ford', 'BMW', 'Audi'];
-
-export default Main;
-/*
-
-
-// create a component which displays a card and if a button gets pressed more products are displayed
-/*export default function Main() {
-  return (
     <div id="len">
       <Row xs={1} md={3} className="g-4 mt-5">
-        {Array.from({ length: 6 }).map((_, idx) => (
+        {Array.from({ length: count }).map((_, idx) => (
           <Col className="mt-5">
             <Card>
               <Card.Img variant="top" src={mainImage} />
@@ -76,68 +29,14 @@ export default Main;
           </Col>
         ))}
       </Row>
-      <div className="text-center mt-5">
+
+      <div className="text-center mt-5 mb-5">
         <Button
           variant="outline-dark"
           size="lg"
           className="mt-5"
-        >
-          Load More Products
-        </Button>
-      </div>
-    </div>
-  );
-}*/
-
-/*function loadCardGroupWithoutButton() {
-  //return either that what is already in shopPage or the new cardgroup
-  return (
-    <div>
-      <Row xs={1} md={3} className="g-4 mt-5">
-        {Array.from({ length: 9 }).map((_, idx) => (
-          <Col className="mt-5">
-            <Card>
-              <Card.Img variant="top" src={mainImage} />
-              <Card.Body>
-                <Card.Title>Nootropic</Card.Title>
-                <Card.Text>99€</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </div>
-  );
-}
-
-const ShopPage = () => {
-  //if button is clicked, load more products
-  //i dont need a state for that actually because we only have 9 products. if the site refreshes the load more button gets displayed
-  //this does mean the functionality works like that: if the button gets clicked the i render the code from the different method
-
-  return (
-    <div id="len">
-      <Row xs={1} md={3} className="g-4 mt-5">
-        {Array.from({ length: 6 }).map((_, idx) => (
-          <Col className="mt-5">
-            <Card>
-              <Card.Img variant="top" src={mainImage} />
-              <Card.Body>
-                <Card.Title>Nootropic</Card.Title>
-                <Card.Text>99€</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-
-      <div className="text-center mt-5">
-        <Button
-          variant="outline-dark"
-          size="lg"
-          className="mt-5"
-          
-          onClick={loadCardGroupWithoutButton}
+          onClick={handleClick}
+          hidden={!showButton}
         >
           Load More Products
         </Button>
@@ -146,4 +45,4 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;*/
+export default ShopPage;

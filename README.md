@@ -33,8 +33,8 @@
 - [x] put everything more close together 
 - [x] add 6 products
 - [x] add nav
-- [ ] add load more products button
-- [ ] make button functional and when clicking button display next 3 products 
+- [x] add load more products button
+- [x] make button functional and when clicking button display next 3 products 
 - [ ] connect shop all buttons and shop from navbar with shop page
 
 # Notes 
