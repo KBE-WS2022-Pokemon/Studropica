@@ -1,20 +1,42 @@
-import React from "react";
-import { Button, Row, Col, Stack, Image, Card } from "react-bootstrap";
+import React, {useState} from "react";
+import { Button, Image, Card } from "react-bootstrap";
 import mainImage from "../images/grey.png";
 import "./Main.css";
 
-const Main = (props) => {
-  const cars = props.cars;
+
+//on a button click hide the button itself and display an image
+const Main = () => {
+  const [showImage, setShowImage] = useState(false);
+
+  const handleClick = () => {
+    setShowImage(true);
+  };
+
   return (
-    <>
-      <h1>Garage</h1>
-      {cars.length > 0 && <h2>You have {cars.length} cars in your garage.</h2>}
-    </>
+    <div>
+      <div>
+        <Button onClick={handleClick}>Click me</Button>
+      </div>
+      <div>
+        {showImage && <Image src={mainImage} />}
+      </div>
+    </div>
   );
 };
 
-const cars = ["Ford", "BMW", "Audi"];
+
+
+
+
 export default Main;
+
+
+
+
+
+
+
+
 
 /*
 const Main = (props) => {

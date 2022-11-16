@@ -22,7 +22,7 @@ const App = () => {
       </div>
     </div>*/
     <div>
-      <Navigation />
+
       <Main />
     </div>
   );

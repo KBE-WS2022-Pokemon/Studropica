@@ -57,3 +57,7 @@ credits
 I am good to go. now thinking of what to do next. could start with the shopping page but could also refactor some code.
 
 for now I just go with the grey color I would say and can later still make changes in color i would say
+
+i need to find out how to call a method which contains code which needs to be rendered
+i tought i can just call a function which contains the code which needs to be returnt and than 
+what i need are two functions. one which displays a button and one which does not display a button. 
