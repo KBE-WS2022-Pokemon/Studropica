@@ -35,6 +35,7 @@
 - [x] add nav
 - [x] add load more products button
 - [x] make button functional and when clicking button display next 3 products 
+- [ ] create a checkout with stripe which displays products 
 - [ ] connect shop all buttons and shop from navbar with shop page
 
 # Notes 

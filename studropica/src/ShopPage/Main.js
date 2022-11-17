@@ -4,12 +4,10 @@ import mainImage from "../images/grey.png";
 import "./Main.css";
 
 const ShopPage = () => {
-  const [showImage, setShowImage] = useState(false);
   const [showButton, setShowButton] = useState(true);
   const [count, setCount] = useState(6);
 
   const handleClick = () => {
-    setShowImage(true);
     setShowButton(false);
     setCount(count + 3);
   };
