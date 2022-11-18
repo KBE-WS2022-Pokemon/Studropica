@@ -36,9 +36,28 @@
 - [x] add load more products button
 - [x] make button functional and when clicking button display next 3 products 
 - [x] create a checkout with stripe which displays products 
-- [ ] connect shop all buttons and shop from navbar with shop page
-- [ ] on click about rout to homepage
-- [ ] create page for an single product
+- [x] connect shop all buttons and shop from navbar with shop page
+- [x] on click about route to homepage
+- [x] create new page which is splitted in two sites 
+- [x] display this page
+- [x] display image in similar ratio like in figma 
+- [x] create stack with 4 elements 
+- [x] Add header, price and text 
+- [x] make all flush left
+- [x] make the counter in increase/decrease button work 
+- [x] add selector button with three different variants 
+- [x] add two selectorbuttons with sample data 
+- [x] add two buttons with one button calculating and displaying the price 
+- [x] create page for an single product
+- [x] if any product gets clicked (no matter which product) i get forwarded to the single page
+- [ ] create folder and file for cart 
+- [ ] create two sides
+- [ ] add header and text 
+- [ ] add only two sample images with the todo that later this needs to work with the database
+- [ ] add pull bar with return policy and shipping options 
+- [ ] add header for right side 
+- [ ] add form 
+- [ ] add rest with calculated sum from the left
 - [ ] next steps
 
 # Notes 

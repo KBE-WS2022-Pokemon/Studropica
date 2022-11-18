@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Row, Col, Stack, Image } from "react-bootstrap";
 import mainImage from "../images/grey.png";
+import { LinkContainer } from "react-router-bootstrap";
 
 const MainSecondScreen = () => {
   return (
@@ -12,9 +13,11 @@ const MainSecondScreen = () => {
         Convince yourself and finally achieve the breakthrough!
       </div>
       <div className="text-center">
-        <Button variant="outline-dark" size="lg">
-          Shop All
-        </Button>
+        <LinkContainer to="/shop">
+          <Button variant="outline-dark" size="lg">
+            Shop All
+          </Button>
+        </LinkContainer>
       </div>
       <div className="text-center">
         <Row className="justify-content-center">

@@ -18,9 +18,9 @@ const Navigation = () => {
             <Nav.Link>Shop</Nav.Link>
           </LinkContainer>
           <Nav.Link href="#stories">Stories</Nav.Link>
-
-          <Nav.Link href="#about">About</Nav.Link>
-
+          <LinkContainer to="/">
+            <Nav.Link href="#about">About</Nav.Link>
+          </LinkContainer>
           <Form id="form" className="me-5">
             <FormControl type="text" placeholder="Search" />
           </Form>
