@@ -2,16 +2,21 @@
 import React from "react";
 import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import "./Navigation.css";
+import { Switch, Route, Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg" className="fixed-top">
-      <Navbar.Brand href="#home">Studropica</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/">
+        Studropica
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="#shop">Shop</Nav.Link>
-
+          <LinkContainer to="/shop">
+            <Nav.Link>Shop</Nav.Link>
+          </LinkContainer>
           <Nav.Link href="#stories">Stories</Nav.Link>
 
           <Nav.Link href="#about">About</Nav.Link>

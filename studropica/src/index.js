@@ -1,6 +1,36 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// components Navbar
+import Navigation from "./LandingPage/Navigation";
+
+//components LandingPage
+import App from "./App";
+import MainStartScreen from "./LandingPage/MainStartScreen";
+import MainSecondScreen from "./LandingPage/MainSecondScreen";
+import Footer from "./LandingPage/Footer";
+
+//components ShopPage
+import Main from "./ShopPage/Main";
+
+//components Checkout
+import Checkout from "./Checkout/Checkout";
+import Cancel from "./Checkout/Cancel";
+import Success from "./Checkout/Success";
+
+//ReactDOM.render(<App />, document.getElementById("root"));
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route path="/shop" element={<Main />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
+);

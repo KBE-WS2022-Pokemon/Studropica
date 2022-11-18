@@ -35,8 +35,11 @@
 - [x] add nav
 - [x] add load more products button
 - [x] make button functional and when clicking button display next 3 products 
-- [ ] create a checkout with stripe which displays products 
+- [x] create a checkout with stripe which displays products 
 - [ ] connect shop all buttons and shop from navbar with shop page
+- [ ] on click about rout to homepage
+- [ ] create page for an single product
+- [ ] next steps
 
 # Notes 
 
@@ -62,3 +65,5 @@ for now I just go with the grey color I would say and can later still make chang
 i need to find out how to call a method which contains code which needs to be rendered
 i tought i can just call a function which contains the code which needs to be returnt and than 
 what i need are two functions. one which displays a button and one which does not display a button. 
+
+i need some kind of routing. if the shop all button is pressed routing
