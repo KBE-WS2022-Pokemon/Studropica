@@ -16,9 +16,9 @@ import Footer from "./LandingPage/Footer";
 import Main from "./ShopPage/Main";
 
 //components Checkout
-import Checkout from "./Checkout/Checkout";
-import Cancel from "./Checkout/Cancel";
-import Success from "./Checkout/Success";
+import Checkout from "./CheckoutPage/Checkout";
+import Cancel from "./CheckoutPage/Cancel";
+import Success from "./CheckoutPage/Success";
 
 //components ProductPage
 import Product from "./ProductPage/Product";

@@ -5,15 +5,20 @@ import Footer from "./LandingPage/Footer";
 import "@stripe/stripe-js";
 import React, { Component } from "react";
 
-import Product from "./ProductPage/Product";
+import Cart from "./CartPage/Cart";
+import StripeCheckout from "./CheckoutPage/StripeCheckout";
+import Checkout from "./CheckoutPage/Checkout";
+
 
 const App = () => {
   return (
     <div className="App">
       {/*<Product/>*/}
-      <MainStartScreen />
+      {/*<Cart /> */}
+      <Checkout/>
+      {/*<MainStartScreen />
       <MainSecondScreen />
-      <Footer />
+      <Footer />*/}
     </div>
   );
 };

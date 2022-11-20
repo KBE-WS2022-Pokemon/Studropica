@@ -15,7 +15,7 @@ const getStripe = () => {
   return stripePromise;
 };
 
-const Checkout = () => {
+const StripeCheckout = () => {
   const [stripeError, setStripeError] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const item = {
@@ -75,4 +75,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default StripeCheckout;

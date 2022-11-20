@@ -67,9 +67,9 @@ function ProductPage() {
     console.log(e);
     //TODO 100 should be the value from the price of the choosen product from the database
     if (e === "+") {
-      setPrice((count+1) * 100);
+      setPrice((count + 1) * 100);
     } else if (e === "-" && count > 1) {
-      setPrice((count-1) * 100);
+      setPrice((count - 1) * 100);
     }
   }
 
@@ -89,7 +89,6 @@ function ProductPage() {
               there is no high-quality clinical evidence of its effectiveness to
               treat any disease.
             </p>
-
             <Row>
               <Col>
                 <InputGroup>
@@ -120,12 +119,16 @@ function ProductPage() {
             </Row>
             <Row>
               <Col>
-              <LinkContainer to="/cart">
-                <Button variant="dark" className="w-100" size="lg">Add to Cart - {price}€</Button>
-              </LinkContainer>
+                <LinkContainer to="/cart">
+                  <Button variant="dark" className="w-100" size="lg">
+                    Add to Cart - {price}€
+                  </Button>
+                </LinkContainer>
               </Col>
               <Col>
-              <Button variant="primary" size="lg" className="w-100">Buy now</Button>
+                <Button variant="primary" size="lg" className="w-100">
+                  Buy now
+                </Button>
               </Col>
             </Row>
           </Stack>
