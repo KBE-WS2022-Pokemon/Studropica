@@ -50,14 +50,21 @@
 - [x] add two buttons with one button calculating and displaying the price 
 - [x] create page for an single product
 - [x] if any product gets clicked (no matter which product) i get forwarded to the single page
-- [ ] create folder and file for cart 
-- [ ] create two sides
-- [ ] add header and text 
-- [ ] add only two sample images with the todo that later this needs to work with the database
-- [ ] add pull bar with return policy and shipping options 
-- [ ] add header for right side 
-- [ ] add form 
-- [ ] add rest with calculated sum from the left
+- [x] create folder and file for cart 
+- [x] create two sides
+- [x] add header and text 
+- [x] add text
+- [x] function for rendering n number of images below each other.
+- [x] add functionality to remove button (reduces number from above)
+- [x] add pull bar with return policy and shipping options 
+- [x] add header for right side 
+- [x] add form 
+- [x] checkout file with header and below stuff 
+- [x] shipping information and form for everything
+- [x] checkbox and button 
+- [ ] add function that if button click and one of the fields empty (except optional) error appears (fill out all required fields)
+- [ ] right side
+- [ ] add cart and checkout to click workflow
 - [ ] next steps
 
 # Notes 
@@ -86,3 +93,5 @@ i tought i can just call a function which contains the code which needs to be re
 what i need are two functions. one which displays a button and one which does not display a button. 
 
 i need some kind of routing. if the shop all button is pressed routing
+
+i want that the whole col gets displayed several times 
