@@ -18,7 +18,6 @@ import mainImage from "../images/grey.png";
 import "./Cart.css";
 
 function CartPage() {
-
   // on click remove item gets removed (just change value for count )
   const [count, setCount] = useState(3);
 
@@ -30,10 +29,8 @@ function CartPage() {
   function calcTotal() {
     //get teh content from the react bootstrap component "Row" with the classname "price"
     const price = document.getElementsByClassName("price");
-    console.log(price)
+    console.log(price);
     ///get childrens of price readct bootstrap component
-
-
   }
 
   window.onload = calcTotal();
@@ -66,10 +63,14 @@ function CartPage() {
                   <Image src={mainImage} width={100} height={100} />
                 </Col>
                 <Col>
-                  <strong><Row >Rhodiola rosea</Row></strong>
+                  <strong>
+                    <Row>Rhodiola rosea</Row>
+                  </strong>
                   <Row>Size: 150mg</Row>
                   <Row>Quantity: 1</Row>
-                  <strong><Row className="price">€99</Row></strong>
+                  <strong>
+                    <Row className="price">€99</Row>
+                  </strong>
                 </Col>
                 <Col>
                   <Row>
@@ -139,7 +140,9 @@ function CartPage() {
               <Col>Total</Col>
               <Col>€100</Col>
             </Row>
-            <Button variant="dark">Continue to checkout</Button>
+            <LinkContainer to="/checkout">
+              <Button variant="dark">Continue to checkout</Button>
+            </LinkContainer>
           </Stack>
         </Col>
       </Row>

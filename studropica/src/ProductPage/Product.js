@@ -15,40 +15,6 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import mainImage from "../images/grey.png";
 
-//create a decrease increase quantity button where text and buttons are added as direct children of the input group
-
-/*function ProductPage() {
-  return (
-    <Container>
-      <Row>
-        <Col md={6}>
-          <Image src={mainImage} fluid />
-        </Col>
-        <Col md={6}>
-          <h1>Product Name</h1>
-          <h3>Product Price</h3>
-          <p>Product Description</p>
-          <Row>
-            <Col>
-              <InputGroup>
-                <Button variant="outline-secondary">-</Button>
-                <InputGroup.Text>Quantity</InputGroup.Text>
-                <Button variant="outline-secondary">+</Button>
-              </InputGroup>
-            </Col>
-            <Col>2 of 2</Col>
-          </Row>
-          <LinkContainer to="/cart">
-            <Button variant="primary">Add to Cart</Button>
-          </LinkContainer>
-        </Col>
-      </Row>
-    </Container>
-  );
-}
-
-export default ProductPage;*/
-
 function ProductPage() {
   const [count, setCount] = useState(1);
   //todo set price to appropriate product price from datbase
@@ -126,9 +92,11 @@ function ProductPage() {
                 </LinkContainer>
               </Col>
               <Col>
-                <Button variant="primary" size="lg" className="w-100">
-                  Buy now
-                </Button>
+                <LinkContainer to="/cart">
+                  <Button variant="primary" size="lg" className="w-100">
+                    Buy now
+                  </Button>
+                </LinkContainer>
               </Col>
             </Row>
           </Stack>

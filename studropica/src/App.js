@@ -14,11 +14,11 @@ const App = () => {
   return (
     <div className="App">
       {/*<Product/>*/}
-      {/*<Cart /> */}
-      <Checkout/>
-      {/*<MainStartScreen />
+      {/*<Cart />*/}
+      {/*<Checkout/>*/}
+      <MainStartScreen />
       <MainSecondScreen />
-      <Footer />*/}
+      <Footer />
     </div>
   );
 };

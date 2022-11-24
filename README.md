@@ -62,10 +62,19 @@
 - [x] checkout file with header and below stuff 
 - [x] shipping information and form for everything
 - [x] checkbox and button 
-- [ ] add function that if button click and one of the fields empty (except optional) error appears (fill out all required fields)
-- [ ] right side
-- [ ] add cart and checkout to click workflow
-- [ ] next steps
+- [x] add function that if button click and one of the fields empty (except optional) error appears (fill out all required fields)
+- [x] check cart and how i dealed there with distance. Implement the same for the checkout
+- [x] add part from under order summary from cart 
+- [x] right side
+- [x] if click on buy now button open 
+- [x] add cart and checkout to click workflow
+- [x] add routing from header to cart
+- [ ] create js for shipping 
+- [ ] add left site
+- [ ] create right side 
+- [ ] add routing to shipping site 
+- [ ] next steps 
+
 
 # Notes 
 
@@ -95,3 +104,5 @@ what i need are two functions. one which displays a button and one which does no
 i need some kind of routing. if the shop all button is pressed routing
 
 i want that the whole col gets displayed several times 
+
+cart opens on buy now, cart button header

@@ -23,6 +23,9 @@ import Success from "./CheckoutPage/Success";
 //components ProductPage
 import Product from "./ProductPage/Product";
 
+//components CartPage
+import Cart from "./CartPage/Cart";
+
 //ReactDOM.render(<App />, document.getElementById("root"));
 
 ReactDOM.render(
@@ -33,6 +36,8 @@ ReactDOM.render(
         <Route exact path="/" element={<App />} />
         <Route path="/shop" element={<Main />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   </React.StrictMode>,
