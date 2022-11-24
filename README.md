@@ -121,3 +121,5 @@ pages with similar structure are checkout, cart
 if someone clicks add to cart item count gets to cart ... will be much easier to do that if i have data available.
 
 the rest is all something which I will do if I have the dummy data
+
+Alright. What do we need next? We are given several tasks. I guess I did my work. I can now wait till they build the backend for the site and than I still need to reen e

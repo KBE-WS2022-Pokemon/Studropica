@@ -10,6 +10,7 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Navigate, Redirect, useNavigate} from "react-router-dom";
 
 
 import mainImage from "../images/grey.png";
@@ -27,6 +28,7 @@ function Checkout() {
   const [country, setCountry] = useState("");
   const [check, setChecked] = useState("no");
 
+  const navigate = useNavigate();
   const [count, setCount] = useState(3);
 
   const ColoredLine = ({ color }) => (
@@ -58,7 +60,7 @@ function Checkout() {
       alert("Please fill out all fields");
       return false;
     } else {
-      window.location.href = "/shipping";      
+      return navigate("/shipping");
     }
   }
   return (
