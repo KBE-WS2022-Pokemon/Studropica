@@ -76,9 +76,12 @@
 - [x] make button fitted to the checkboxes
 - [x] create right side 
 - [x] add routing to shipping site when clicking on continue to shipping
-- [ ] go through each file and clean up code a little bit
-- [ ] define next steps for stripe 
-- [ ] next steps 
+- [x] go through each file and clean up code a little bit
+- [x] remove stories from navbar 
+- [x] put stripe on site 
+- [x] run a npm build locally and check if that works
+- [x] put website on netlify
+- [ ] share website with team. create an action plan with the team
 
 
 # Notes 
@@ -114,3 +117,7 @@ cart opens on buy now, cart button header
 
 
 pages with similar structure are checkout, cart
+
+if someone clicks add to cart item count gets to cart ... will be much easier to do that if i have data available.
+
+the rest is all something which I will do if I have the dummy data
