@@ -6,21 +6,15 @@ import {
   Stack,
   Image,
   Container,
-  InputGroup,
-  Dropdown,
   Form,
-  Card,
-  Accordion,
   ProgressBar,
 } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 
 import mainImage from "../images/grey.png";
 
 // TODO: [K2P-24] get here like on cart site products from database and display calc steps based on that.
 
 function Checkout() {
-  //states for the form
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -61,13 +55,14 @@ function Checkout() {
       alert("Please fill out all fields");
       return false;
     } else {
+      window.location.href = "/shipping";
       return true;
     }
   }
   return (
     <Container>
       <Row className="mt-5">
-        <Col className="mt-5">
+        <Col className="mt-5 ">
           <h1>Checkout</h1>
           <ProgressBar variant="black" now={33} label={`${33}%`} />
           <Row className="mb-3">
@@ -138,7 +133,6 @@ function Checkout() {
                   feedback="You must agree before submitting."
                   feedbackType="invalid"
                   onChange={(e) => {
-                    // e.target.checked will return true or false if checkbox is checked
                     e.target.checked ? setChecked("yes") : setChecked("no");
                   }}
                 />
@@ -181,10 +175,10 @@ function Checkout() {
               </Row>
             ))}
           </Stack>
-          <Stack gap={4} className="mt-5 mb-5" >
+          <Stack gap={4} className="mt-5 mb-5">
             <Form.Control type="email" placeholder="Enter coupon code here" />
             <Row>
-              {/*TODO: needs to be calculated later from items on left side (together with total)*/}
+              {/*TODO: [K2P-25] needs to be calculated later from items on left side (together with total)*/}
               <Col>Subtotal</Col>
               <Col>€100</Col>
             </Row>

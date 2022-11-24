@@ -1,4 +1,3 @@
-// need to create a page which is first splitted in two sections
 import React, { useState } from "react";
 import {
   Button,
@@ -8,7 +7,6 @@ import {
   Image,
   Container,
   InputGroup,
-  Dropdown,
   Form,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -17,7 +15,7 @@ import mainImage from "../images/grey.png";
 
 function ProductPage() {
   const [count, setCount] = useState(1);
-  //todo set price to appropriate product price from datbase
+  //TODO: [K2P-26] set price to appropriate product price from datbase
   const [price, setPrice] = useState(100);
 
   function handleQuantity(e) {
@@ -31,7 +29,7 @@ function ProductPage() {
 
   function handlePrice(e) {
     console.log(e);
-    //TODO 100 should be the value from the price of the choosen product from the database
+    //TODO: [K2P-27] 100 should be the value from the price of the choosen product from the database
     if (e === "+") {
       setPrice((count + 1) * 100);
     } else if (e === "-" && count > 1) {

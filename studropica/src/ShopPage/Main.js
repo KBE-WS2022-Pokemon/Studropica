@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Image, Card, Row, Col } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import mainImage from "../images/grey.png";
 import "./Main.css";
 
@@ -14,7 +13,6 @@ const ShopPage = () => {
   };
 
   function routeToProduct() {
-    //! not sure if this is okay for routing
     window.location.href = "/product";
   }
 

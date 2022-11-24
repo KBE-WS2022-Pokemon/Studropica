@@ -17,6 +17,7 @@ import Main from "./ShopPage/Main";
 
 //components Checkout
 import Checkout from "./CheckoutPage/Checkout";
+import Shipping from "./CheckoutPage/Shipping";
 import Cancel from "./CheckoutPage/Cancel";
 import Success from "./CheckoutPage/Success";
 
@@ -25,8 +26,6 @@ import Product from "./ProductPage/Product";
 
 //components CartPage
 import Cart from "./CartPage/Cart";
-
-//ReactDOM.render(<App />, document.getElementById("root"));
 
 ReactDOM.render(
   <React.StrictMode>
@@ -38,6 +37,7 @@ ReactDOM.render(
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/shipping" element={<Shipping />} />
       </Routes>
     </Router>
   </React.StrictMode>,

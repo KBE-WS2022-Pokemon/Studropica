@@ -2,7 +2,7 @@
 import React from "react";
 import { Navbar, Nav, Form, FormControl } from "react-bootstrap";
 import "./Navigation.css";
-import { Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Navigation = () => {

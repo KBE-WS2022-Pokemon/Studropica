@@ -69,10 +69,15 @@
 - [x] if click on buy now button open 
 - [x] add cart and checkout to click workflow
 - [x] add routing from header to cart
-- [ ] create js for shipping 
-- [ ] add left site
-- [ ] create right side 
-- [ ] add routing to shipping site 
+- [x] create js for shipping 
+- [x] make color black
+- [x] draw black rounds around 
+- [x] create two blocks with a checkbox 
+- [x] make button fitted to the checkboxes
+- [x] create right side 
+- [x] add routing to shipping site when clicking on continue to shipping
+- [ ] go through each file and clean up code a little bit
+- [ ] define next steps for stripe 
 - [ ] next steps 
 
 
@@ -106,3 +111,6 @@ i need some kind of routing. if the shop all button is pressed routing
 i want that the whole col gets displayed several times 
 
 cart opens on buy now, cart button header
+
+
+pages with similar structure are checkout, cart
