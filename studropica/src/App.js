@@ -7,7 +7,6 @@ import React, { Component } from "react";
 
 //todo can be removed later. just for checking the components
 import Cart from "./CartPage/Cart";
-import StripeCheckout from "./CheckoutPage/StripeCheckout";
 import Checkout from "./CheckoutPage/Checkout";
 import Shipping from "./CheckoutPage/Shipping";
 
@@ -20,7 +19,7 @@ const App = () => {
       {/*<Shipping/>*/}
       <MainStartScreen />
       <MainSecondScreen />
-      <Footer />
+  <Footer />
     </div>
   );
 };

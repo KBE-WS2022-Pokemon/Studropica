@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   Button,
   Row,
@@ -12,8 +13,47 @@ import {
 
 import mainImage from "../images/grey.png";
 
+let stripePromise;
+
+const getStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(
+      "pk_test_51KG40qE7jIbDinv8gi3HDYthubVs4gc3dGbpBzoyQG47Cddes3hZvy0GokC5nmikjZSwODOLVfzLRg3OEAQG5qpM00f6MvchPX"
+    );
+  }
+  return stripePromise;
+};
+
 function Shipping() {
   const [count, setCount] = useState(3);
+  const [stripeError, setStripeError] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+  const item = {
+    price: "price_1M58zVE7jIbDinv8crv6PIeR",
+    quantity: 1,
+  };
+
+  const checkoutOptions = {
+    lineItems: [item],
+    mode: "payment",
+    successUrl: `${window.location.origin}/success`,
+    cancelUrl: `${window.location.origin}/cancel`,
+  };
+
+  const redirectToCheckout = async () => {
+    setLoading(true);
+    console.log("redirectToCheckout");
+
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error);
+
+    if (error) setStripeError(error.message);
+    setLoading(false);
+  };
+
+  if (stripeError) alert(stripeError);
+
   function decreaseCount() {
     setCount(count - 1);
   }
@@ -58,7 +98,12 @@ function Shipping() {
           <Row className="mt-5">
             <Col className="mt-5">
               <Stack>
-                <Button variant="dark" size="lg">
+                <Button
+                  variant="dark"
+                  size="lg"
+                  onClick={redirectToCheckout}
+                  disabled={isLoading}
+                >
                   Continue to payment
                 </Button>
               </Stack>

@@ -17,7 +17,6 @@ const Navigation = () => {
           <LinkContainer to="/shop">
             <Nav.Link>Shop</Nav.Link>
           </LinkContainer>
-          <Nav.Link href="#stories">Stories</Nav.Link>
           <LinkContainer to="/">
             <Nav.Link href="#about">About</Nav.Link>
           </LinkContainer>
