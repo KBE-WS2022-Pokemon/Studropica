@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Image, Card, Row, Col } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import mainImage from "../images/grey.png";
 import "./Main.css";
 
@@ -12,22 +13,20 @@ const ShopPage = () => {
     setCount(count + 3);
   };
 
-  function routeToProduct() {
-    window.location.href = "/product";
-  }
-
   return (
     <div id="len">
       <Row xs={1} md={3} className="g-4 mt-5">
         {Array.from({ length: count }).map((_, idx) => (
           <Col className="mt-5">
-            <Card onClick={routeToProduct}>
+            <LinkContainer to="/product">
+            <Card>
               <Card.Img variant="top" src={mainImage} />
               <Card.Body>
                 <Card.Title>Nootropic</Card.Title>
                 <Card.Text>99€</Card.Text>
               </Card.Body>
             </Card>
+            </LinkContainer>
           </Col>
         ))}
       </Row>

@@ -9,9 +9,12 @@ import {
   Form,
   ProgressBar,
 } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 
 import mainImage from "../images/grey.png";
 
+import Shipping from "./Shipping";
 // TODO: [K2P-24] get here like on cart site products from database and display calc steps based on that.
 
 function Checkout() {
@@ -55,8 +58,7 @@ function Checkout() {
       alert("Please fill out all fields");
       return false;
     } else {
-      window.location.href = "/shipping";
-      return true;
+      window.location.href = "/shipping";      
     }
   }
   return (
