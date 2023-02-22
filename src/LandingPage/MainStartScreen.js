@@ -12,12 +12,12 @@ import mainImage from "../images/main.webp";
 import axios from 'axios';
 
 const MainStartScreen = () => {
-  axios.request({
+  /*axios.request({
     method: 'get',
-    url: 'http://localhost:8080/product/1',
+    url: 'http://localhost:8090/product/1',
   }).then(response => {
     console.log(response.data);
-  });
+  });*/
   
   return (
     <Stack gap={5} className="mt-5">

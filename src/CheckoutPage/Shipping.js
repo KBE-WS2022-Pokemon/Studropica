@@ -38,7 +38,7 @@ function Shipping() {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8080/product",
+        url: "http://localhost:8090/api/product",
       })
       .then((response) => {
         const data = response.data;

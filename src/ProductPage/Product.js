@@ -21,7 +21,6 @@ import { ProductContext } from "../Context/ProductContext";
 
 import Navigation from "../LandingPage/Navigation";
 
-
 function ProductPage() {
   const [cartCount, setCartCount] = useState(0);
 
@@ -47,7 +46,7 @@ function ProductPage() {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8080/product/" + urlLastElement,
+        url: "http://localhost:8090/api/product" + urlLastElement,
       })
       .then((response) => {
         const amount = response.data.amount;
@@ -101,7 +100,6 @@ function ProductPage() {
       setPrice(((count - 1) * allPrices).toFixed(2));
     }
   }
-
   return (
       <Container className="mt-5">
         <Row className=" mt-5">

@@ -11,7 +11,6 @@ import axios, { all } from "axios";
 
 const ShopPage = () => {
 
-
   const [allNames, setAllNames] = useState([]);
   const [allPrices, setAllPrices] = useState([]);
   const [allImages, setAllImages] = useState([]);
@@ -19,7 +18,7 @@ const ShopPage = () => {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8080/product",
+        url: "http://localhost:8090/api/product",
       })
       .then((response) => {
         console.log(response.data);

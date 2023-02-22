@@ -29,19 +29,16 @@ function CartPage() {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8080/product",
+        url: "http://localhost:8090/api/product",
       })
       .then((response) => {
         const data = response.data;
         setAllData(data);
         setCount(data.length);
-
         const totalPrice = data.reduce((total, item) => {
           return total + item.price * item.amount;
         }, 0);
         setTotalPrice(totalPrice.toFixed(2));
-
-
         setAllData(data);
       });
   }, []);
