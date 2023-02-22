@@ -3,6 +3,7 @@ import { Button, Row, Col, Stack, Image } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 //import mainImage from "../images/grey.png";
+//this tis just some test
 import htwImage from "../images/htw_berlin.png";
 import chariteImage from "../images/charite.png";
 import tuImage from "../images/tu_berlin.png";
