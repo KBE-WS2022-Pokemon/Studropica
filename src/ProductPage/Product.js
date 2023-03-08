@@ -46,7 +46,7 @@ function ProductPage() {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8090/api/product" + urlLastElement,
+        url: "http://localhost:8090/api/product/" + urlLastElement,
       })
       .then((response) => {
         const amount = response.data.amount;

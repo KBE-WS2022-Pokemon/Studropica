@@ -11,9 +11,12 @@ import axios, { all } from "axios";
 
 const ShopPage = () => {
 
+  console.log("ShopPage");
+  //request is failing because ps not running. if service would be up and running it should work 
   const [allNames, setAllNames] = useState([]);
   const [allPrices, setAllPrices] = useState([]);
   const [allImages, setAllImages] = useState([]);
+  const [allIds, setAllIds] = useState([]);
   useEffect(() => {
     axios
       .request({
@@ -21,12 +24,13 @@ const ShopPage = () => {
         url: "http://localhost:8090/api/product",
       })
       .then((response) => {
+        console.log("response");
         console.log(response.data);
-
         const names = response.data.map((product) => product.name);
         const prices = response.data.map((product) => product.price);
-        const images = response.data.map((product) => product.image);
-
+        const images = response.data.map((product) => product.imageUrl);
+        //const ids = response.data.map((product) => product.uuid);
+        //setAllIds(ids);
         setAllNames(names);
         setAllPrices(prices);
         setAllImages(images);
@@ -46,11 +50,14 @@ const ShopPage = () => {
   };
 
   return (
+    //i iter over the array and get 
+    //{allData[idx].uuid}
     <div id="len">
       <Row xs={1} md={3} className="g-4 mt-5">
         {Array.from({ length: displayCount }).map((_, idx) => (
           <Col className="mt-5">
-            <LinkContainer to={`/product/${idx + 1}`}>
+            {/*<LinkContainer to={`/product/${allIds[idx].uuid}`}> --> this uuid is not rendered right*/}
+            <LinkContainer to={`/product/${allIds[idx]}`}>
               <Card>
                 <Card.Img variant="top" src={allImages[startIndex + idx]} />
                 <Card.Body>
