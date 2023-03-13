@@ -42,7 +42,6 @@ const Navigation = ({cartCount}) => {
               </svg>
             </Nav.Link>
           </LinkContainer>
-          <Navbar.Text>{cartCount}</Navbar.Text>
           <Nav.Link href="#login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
