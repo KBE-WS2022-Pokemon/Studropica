@@ -23,6 +23,7 @@ import Navigation from "../LandingPage/Navigation";
 
 function ProductPage() {
   const [cartCount, setCartCount] = useState(0);
+  //now i have the id and need to get based on the id the product
 
   /**
    * safe number of available items in var
@@ -41,7 +42,6 @@ function ProductPage() {
   const urlLastElement = urlArray[urlArray.length - 1];
 
   //TODO add POST request with Item ID and amount (getting back if products available or not)
-
   useEffect(() => {
     axios
       .request({
@@ -52,7 +52,7 @@ function ProductPage() {
         const amount = response.data.amount;
         const name = response.data.name;
         const price = response.data.price;
-        const image = response.data.image;
+        const image = response.data.imageUrl;
         const description = response.data.description;
         setAllAmounts(amount);
         setAllNames(name);
@@ -76,23 +76,82 @@ function ProductPage() {
     handlePrice(e.target.value);
   }
 
-  //function for setting 
+  //currently on click of addd to cart button only amount is displayed on top
+  //innstead i need to send a post request to cart service with the id of the product and the amount
+  //i send id and amount to cart -- in cart there needs to be a storage of all the items
+
+  /*useEffect(() => {
+    axios
+      .request({
+        method: "post",
+        url: "http://localhost:8090/api/cart",
+        data: {
+          id: urlLastElement,
+          amount: count,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }, [count]);*/
+  //TODO send a post request to cart service and add a prodcut with id
+  //requesrt
+  /*useEffect(() => {
+    axios
+      .request({
+        method: "post",
+        url: "http://localhost:8090/api/product/cart/2af2bb11-7583-4f26-af1f-f39dba961750",
+        data: {
+          amountBought: 1,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }, [count]);*/
+
+  /*useEffect(() => {
+    axios
+      .request({
+        method: "delete",
+        url: "http://localhost:8090/api/cart/2af2bb11-7583-4f26-af1f-f39dba961750"
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }, [count]);
+
+  useEffect(() => {
+    axios
+      .request({
+        method: "get",
+        url: "http://localhost:8090/api/cart"
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  }, [count]);*/
+
+  //function for setting
+  //take id from url and send it with count to cart service 
   function handleAmount() {
-    console.log(allAmounts);
     if (count <= allAmounts) {
-      setCartCount(cartCount + count);
-      setCount(1);
-      //set price to original price
-      setPrice(allPrices);
-      //TODO currently i take information from amount of products in product service. needs to be updated in realtime 
-      //post is send to cart and cart is updating productservice so i need to trigger a new request to product service from here
+      console.log("drin");
+      const url = `http://localhost:8090/api/product/cart/${urlLastElement}`;
+      axios
+      .request({
+        method: "post",
+        url: url,
+        data: {
+          amountBought: count,
+        },
+      })
     } else {
       alert("Not enough items in stock");
     }
   }
 
   function handlePrice(e) {
-    console.log(e);
     //TODO: [K2P-27] 100 should be the value from the price of the choosen product from the database
     if (e === "+") {
       setPrice(((count + 1) * allPrices).toFixed(2));
@@ -101,68 +160,68 @@ function ProductPage() {
     }
   }
   return (
-      <Container className="mt-5">
-        <Row className=" mt-5">
-          <Col className="text-center mt-5">
-            <Image src={allImages} width={500} height={600} />
-          </Col>
-          <Col>
-            <Stack gap={4} className="text-left mt-5">
-              <h2>
-                {allNames}
-                <br /> <h5>{allPrices}€</h5>
-              </h2>
-              <p>{allDescriptions}</p>
-              <Row>
-                <Col>
-                  <InputGroup>
-                    <Button
-                      variant="outline-secondary"
-                      value="-"
-                      onClick={handleQuantity}
-                    >
-                      -
-                    </Button>
-                    <InputGroup.Text>{count}</InputGroup.Text>
-                    <Button
-                      variant="outline-secondary"
-                      value="+"
-                      onClick={handleQuantity}
-                    >
-                      +
-                    </Button>
-                  </InputGroup>
-                </Col>
-                <Col>
-                  <Form.Select aria-label="Default select example">
-                    <option>100mg</option>
-                  </Form.Select>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
+    <Container className="mt-5">
+      <Row className=" mt-5">
+        <Col className="text-center mt-5">
+          <Image src={allImages} width={500} height={600} />
+        </Col>
+        <Col>
+          <Stack gap={4} className="text-left mt-5">
+            <h2>
+              {allNames}
+              <br /> <h5>{allPrices}€</h5>
+            </h2>
+            <p>{allDescriptions}</p>
+            <Row>
+              <Col>
+                <InputGroup>
                   <Button
-                    variant="dark"
-                    className="w-100"
-                    size="lg"
-                    onClick={handleAmount}
+                    variant="outline-secondary"
+                    value="-"
+                    onClick={handleQuantity}
                   >
-                    Add to Cart - {price}€
+                    -
                   </Button>
-                  <Navigation cartCount={cartCount} />
-                </Col>
-                <Col>
-                  <LinkContainer to="/cart">
-                    <Button variant="primary" size="lg" className="w-100">
-                      Buy now
-                    </Button>
-                  </LinkContainer>
-                </Col>
-              </Row>
-            </Stack>
-          </Col>
-        </Row>
-      </Container>
+                  <InputGroup.Text>{count}</InputGroup.Text>
+                  <Button
+                    variant="outline-secondary"
+                    value="+"
+                    onClick={handleQuantity}
+                  >
+                    +
+                  </Button>
+                </InputGroup>
+              </Col>
+              <Col>
+                <Form.Select aria-label="Default select example">
+                  <option>100mg</option>
+                </Form.Select>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button
+                  variant="dark"
+                  className="w-100"
+                  size="lg"
+                  onClick={handleAmount}
+                >
+                  Add to Cart - {price}€
+                </Button>
+                <Navigation cartCount={cartCount} />
+              </Col>
+              <Col>
+                <LinkContainer to="/cart">
+                  <Button variant="primary" size="lg" className="w-100">
+                    Buy now
+                  </Button>
+                </LinkContainer>
+              </Col>
+            </Row>
+          </Stack>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

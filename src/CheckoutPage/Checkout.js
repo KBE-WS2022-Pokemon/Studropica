@@ -10,7 +10,7 @@ import {
   ProgressBar,
 } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navigate, Redirect, useNavigate} from "react-router-dom";
+import { Navigate, Redirect, useNavigate } from "react-router-dom";
 
 import mainImage from "../images/grey.png";
 
@@ -53,7 +53,6 @@ function Checkout() {
         }, 0);
         setTotalPrice(totalPrice.toFixed(2));
 
-
         //setAllData(data);
       });
   }, []);
@@ -68,7 +67,7 @@ function Checkout() {
       return total + item.price * item.amount;
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
-  }
+  };
 
   const ColoredLine = ({ color }) => (
     <hr
@@ -93,12 +92,35 @@ function Checkout() {
       city.city === undefined ||
       zipcode.zipcode === undefined ||
       country.country === undefined ||
-      country.country === "Country" ||
-      check === "no"
+      country.country === "Country"
+      //send post request with all the data to checkout service
     ) {
       alert("Please fill out all fields");
       return false;
     } else {
+      const formData = {
+        firstName: firstName.firstName,
+        lastName: lastName.lastName,
+        address: address.address,
+        apartment: apartment.apartment,
+        city: city.city,
+        zipcode: zipcode.zipcode,
+        country: country.country,
+      };
+      axios
+      .request({
+        method: "post",
+        url: "http://localhost:8090/api/checkout/address",
+        data: formData
+      })
+        .then((response) => {
+          console.log(response);
+          return navigate("/shipping");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Error sending form data. Please try again later.");
+        });
       return navigate("/shipping");
     }
   }
@@ -168,19 +190,6 @@ function Checkout() {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Form.Check
-                  required
-                  label="Save contact information"
-                  feedback="You must agree before submitting."
-                  feedbackType="invalid"
-                  onChange={(e) => {
-                    e.target.checked ? setChecked("yes") : setChecked("no");
-                  }}
-                />
-              </Col>
-            </Row>
             <Button variant="dark" size="lg" onClick={validateForm}>
               Continue to shipping
             </Button>
@@ -201,7 +210,9 @@ function Checkout() {
                   <Row>Size: 100mg</Row>
                   <Row>Quantity: {allData[idx].amount}</Row>
                   <strong>
-                    <Row className="price">€ {(allData[idx].price * allData[idx].amount).toFixed(2)}</Row>
+                    <Row className="price">
+                      € {(allData[idx].price * allData[idx].amount).toFixed(2)}
+                    </Row>
                   </strong>
                 </Col>
                 <Col>

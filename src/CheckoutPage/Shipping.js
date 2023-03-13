@@ -49,8 +49,6 @@ function Shipping() {
           return total + item.price * item.amount;
         }, 0);
         setTotalPrice(totalPrice.toFixed(2));
-
-
         setAllData(data);
       });
   }, []);
@@ -66,9 +64,7 @@ function Shipping() {
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
   }
-
-
-
+  
   const item = {
     price: "price_1M58zVE7jIbDinv8crv6PIeR",
     quantity: 1,

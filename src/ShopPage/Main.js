@@ -11,7 +11,6 @@ import axios, { all } from "axios";
 
 const ShopPage = () => {
 
-  console.log("ShopPage");
   //request is failing because ps not running. if service would be up and running it should work 
   const [allNames, setAllNames] = useState([]);
   const [allPrices, setAllPrices] = useState([]);
@@ -29,8 +28,9 @@ const ShopPage = () => {
         const names = response.data.map((product) => product.name);
         const prices = response.data.map((product) => product.price);
         const images = response.data.map((product) => product.imageUrl);
-        //const ids = response.data.map((product) => product.uuid);
-        //setAllIds(ids);
+        const ids = response.data.map((product) => product.uuid);
+        console.log(ids)
+        setAllIds(ids);
         setAllNames(names);
         setAllPrices(prices);
         setAllImages(images);
@@ -51,6 +51,7 @@ const ShopPage = () => {
 
   return (
     //i iter over the array and get 
+    //when user clicks on the produt product is displayed based on uuid 
     //{allData[idx].uuid}
     <div id="len">
       <Row xs={1} md={3} className="g-4 mt-5">

@@ -48,6 +48,7 @@ function CartPage() {
     const newData = [...allData];
     newData.splice(index, 1);
     setAllData(newData);
+    console.log(newData);
     setCount(newData.length);
     const totalPrice = newData.reduce((total, item) => {
       return total + item.price * item.amount;
