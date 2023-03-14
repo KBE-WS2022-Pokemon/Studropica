@@ -29,19 +29,19 @@ import Cart from "./CartPage/Cart";
 
 //keycloak
 
-    ReactDOM.render(
-      <React.StrictMode>
-        <Router>
-          <Navigation />
-          <Routes>
-            <Route exact path="/" element={<App />} />
-            <Route path="/shop" element={<Main />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/shipping" element={<Shipping />} />
-          </Routes>
-        </Router>
-      </React.StrictMode>,
-      document.getElementById("root")
-    );
+ReactDOM.render(
+  <React.StrictMode>
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route path="/shop" element={<Main />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/shipping" element={<Shipping />} />
+      </Routes>
+    </Router>
+  </React.StrictMode>,
+  document.getElementById("root")
+);

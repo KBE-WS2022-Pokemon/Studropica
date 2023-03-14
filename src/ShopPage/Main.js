@@ -9,7 +9,25 @@ import { ProductContext } from "../Context/ProductContext";
 
 import axios, { all } from "axios";
 
+import { getUser } from '../auth_helper';
+
 const ShopPage = () => {
+
+  getUser().then(user => {
+    if (user && user.access_token) {
+        const headers = {
+        Accept: "application/json",
+        Authorization: "Bearer " + user.access_token
+        };
+        console.log(user.access_token)
+        return axios.get("http://localhost:8090/api/product", { headers });
+    } else {
+        throw new Error('user is not logged in');
+    }
+  }).then(response => {
+  }).catch(error => {
+  });
+
 
   //request is failing because ps not running. if service would be up and running it should work 
   const [allNames, setAllNames] = useState([]);

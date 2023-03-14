@@ -12,6 +12,8 @@ import Checkout from "./CheckoutPage/Checkout";
 import Shipping from "./CheckoutPage/Shipping";
 import { useState } from "react";
 
+
+import { getUser, login, logout } from "./auth_helper";
 const App = () => {
   return (
     <div className="App">

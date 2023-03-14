@@ -7,35 +7,19 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import Keycloak from "keycloak-js";
 
-const keycloak = new Keycloak({
+/*const keycloak = new Keycloak({
   url: "http://localhost:8080/auth",
   realm: "Studropica",
   clientId: "frontend_client",
   pkceMethod: 'S256'
-});
-//i want to create an a var which is accessible to all components
+});*/
 
-const handleLogin = () => {
-  keycloak.login();
-};
-
+import { getUser, login, logout } from "../auth_helper";
 
 const Navigation = ({ cartCount }) => {
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    keycloak
-      .init({
-        onLoad: "check-sso",
-        promiseType: "native",
-      })
-      .then((authenticated) => {
-        setAuthenticated(authenticated);
-      })
-      .catch((error) => {
-        console.error("Keycloak initialization failed", error);
-      });
-  }, []);
+  const logins = () => {
+    login();
+  };  
   return (
     <Navbar bg="light" expand="lg" className="fixed-top">
       <Navbar.Brand as={Link} to="/">
@@ -69,15 +53,7 @@ const Navigation = ({ cartCount }) => {
               </svg>
             </Nav.Link>
           </LinkContainer>
-          {authenticated ? (
-    <NavDropdown title={keycloak.tokenParsed.name}>
-      <NavDropdown.Item onClick={keycloak.logout}>Logout</NavDropdown.Item>
-    </NavDropdown>
-  ) : (
-    <Nav.Link href="#login" onClick={handleLogin}>
-      Login
-    </Nav.Link>
-  )}
+          <Nav.Link href="#login" onClick={logins}>Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
