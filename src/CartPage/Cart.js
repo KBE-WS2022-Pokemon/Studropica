@@ -24,8 +24,53 @@ function CartPage() {
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
-  //TODO instead of making request to product service i need to make request to cart service
+  //make request to cart service and see if it works --> should display all items in cart
+  //request is working - now i need to check how i can display data
+
+  //need to write a function where the input is the json from the cart service and a
+  function addImageUrls(data) {
+    data.forEach((item) => {
+      axios
+        .request({
+          method: "get",
+          url: "http://localhost:8090/api/product/" + item.uuid,
+        })
+        .then((response) => {
+          const image = response.data.imageUrl;
+          item.imageUrl = image;
+        });
+    });
+    return data;
+  }
+
+  //problem is that images still not getting displayed.
+
+  //iam confused why useEffect is not working
   useEffect(() => {
+    axios
+      .request({
+        method: "get",
+        url: "http://localhost:8090/api/cart"
+      })
+      .then((response) => {
+        let data = response.data;
+        data = addImageUrls(data);
+        setCount(data.length);
+        const totalPrice = data.reduce((total, item) => {
+          return total + item.price * item.amount;
+        }, 0);
+        setTotalPrice(totalPrice.toFixed(2));
+        setAllData(data);
+        console.log(allData);
+      });
+  }, []);
+
+  //i am requesting the card service to get the data but the image url is missing
+  //i can send a seperate request to 
+
+
+  //TODO instead of making request to product service i need to make request to cart service
+  /*useEffect(() => {
     axios
       .request({
         method: "get",
@@ -41,14 +86,13 @@ function CartPage() {
         setTotalPrice(totalPrice.toFixed(2));
         setAllData(data);
       });
-  }, []);
+  }, []);*/
 
   const removeItem = (index) => {
     //TODO send post request to cart service to remove item from cart
     const newData = [...allData];
     newData.splice(index, 1);
     setAllData(newData);
-    console.log(newData);
     setCount(newData.length);
     const totalPrice = newData.reduce((total, item) => {
       return total + item.price * item.amount;
@@ -81,7 +125,7 @@ function CartPage() {
             {Array.from({ length: count }).map((_, idx) => (
               <Row key={idx}>
                 <Col>
-                  <Image src={allData[idx].image} width={100} height={100} />
+                  <Image src={allData[idx].imageUrl} width={100} height={100} />
                 </Col>
                 <Col>
                   <strong>
