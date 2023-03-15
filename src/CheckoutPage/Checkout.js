@@ -9,14 +9,7 @@ import {
   Form,
   ProgressBar,
 } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { Navigate, Redirect, useNavigate } from "react-router-dom";
-
-import mainImage from "../images/grey.png";
-
-import Shipping from "./Shipping";
-// TODO: [K2P-24] get here like on cart site products from database and display calc steps based on that.
-
 import axios, { all } from "axios";
 
 function Checkout() {
@@ -27,38 +20,56 @@ function Checkout() {
   const [city, setCity] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [country, setCountry] = useState("");
-  const [check, setChecked] = useState("no");
-
   const [allData, setAllData] = useState([]);
-
   const [totalPrice, setTotalPrice] = useState([]);
 
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
 
-  //TODO instead of making request to product service i need to make request to checkout service
   useEffect(() => {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8090/api/product",
+        url: "http://localhost:8090/api/cart",
       })
       .then((response) => {
         const data = response.data;
-        setAllData(data);
-        console.log("hallo2");
-        setCount(data.length);
-        const totalPrice = data.reduce((total, item) => {
-          return total + item.price * item.amount;
-        }, 0);
-        setTotalPrice(totalPrice.toFixed(2));
-
-        //setAllData(data);
+        Promise.all(
+          data.map((item) =>
+            axios
+              .request({
+                method: "get",
+                url: "http://localhost:8090/api/product/" + item.uuid,
+              })
+              .then((response) => {
+                item.imageUrl = response.data.imageUrl;
+                return item;
+              })
+          )
+        )
+          .then((modifiedData) => {
+            setAllData(modifiedData);
+            setCount(modifiedData.length);
+            const totalPrice = modifiedData.reduce((total, item) => {
+              return total + item.price * item.amount;
+            }, 0);
+            setTotalPrice(totalPrice.toFixed(2));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
   }, []);
 
   const removeItem = (index) => {
-    //TODO send post request to cart service to remove item from cart
+    axios
+      .request({
+        method: "delete",
+        url: "http://localhost:8090/api/cart/" + allData[index].uuid,
+      })
+      .then((response) => {
+        console.log(response);
+      });
     const newData = [...allData];
     newData.splice(index, 1);
     setAllData(newData);
@@ -67,6 +78,7 @@ function Checkout() {
       return total + item.price * item.amount;
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
+    window.location.reload();
   };
 
   const ColoredLine = ({ color }) => (
@@ -79,10 +91,6 @@ function Checkout() {
     />
   );
 
-  function decreaseCount() {
-    setCount(count - 1);
-  }
-
   function validateForm() {
     if (
       firstName.firstName === undefined ||
@@ -93,7 +101,6 @@ function Checkout() {
       zipcode.zipcode === undefined ||
       country.country === undefined ||
       country.country === "Country"
-      //send post request with all the data to checkout service
     ) {
       alert("Please fill out all fields");
       return false;
@@ -108,17 +115,15 @@ function Checkout() {
         country: country.country,
       };
       axios
-      .request({
-        method: "post",
-        url: "http://localhost:8090/api/checkout/address",
-        data: formData
-      })
+        .request({
+          method: "post",
+          url: "http://localhost:8090/api/checkout/address",
+          data: formData,
+        })
         .then((response) => {
-          console.log(response);
           return navigate("/shipping");
         })
         .catch((error) => {
-          console.error(error);
           alert("Error sending form data. Please try again later.");
         });
       return navigate("/shipping");
@@ -201,7 +206,7 @@ function Checkout() {
             {Array.from({ length: count }).map((_, idx) => (
               <Row>
                 <Col>
-                  <Image src={allData[idx].image} width={100} height={100} />
+                  <Image src={allData[idx].imageUrl} width={100} height={100} />
                 </Col>
                 <Col>
                   <strong>
@@ -232,7 +237,6 @@ function Checkout() {
           <Stack gap={4} className="mt-5 mb-5">
             <Form.Control type="email" placeholder="Enter coupon code here" />
             <Row>
-              {/*TODO: [K2P-25] needs to be calculated later from items on left side (together with total)*/}
               <Col>Subtotal</Col>
               <Col>€ {totalPrice}</Col>
             </Row>

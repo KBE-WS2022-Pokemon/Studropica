@@ -15,8 +15,6 @@ import {
 import { useContext, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
-import bottleImage from "../images/pills_box.png";
-import mainImage from "../images/grey.png";
 import "./Cart.css";
 import axios, { all } from "axios";
 
@@ -24,14 +22,12 @@ function CartPage() {
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
-  //make request to cart service and see if it works --> should display all items in cart
-  //request is working - now i need to check how i can display data
 
   useEffect(() => {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8090/api/cart"
+        url: "http://localhost:8090/api/cart",
       })
       .then((response) => {
         let data = response.data;
@@ -61,33 +57,16 @@ function CartPage() {
           });
       });
   }, []);
-  
-
-  //i am requesting the card service to get the data but the image url is missing
-  //i can send a seperate request to 
-
-
-  //TODO instead of making request to product service i need to make request to cart service
-  /*useEffect(() => {
-    axios
-      .request({
-        method: "get",
-        url: "http://localhost:8090/api/product",
-      })
-      .then((response) => {
-        const data = response.data;
-        setAllData(data);
-        setCount(data.length);
-        const totalPrice = data.reduce((total, item) => {
-          return total + item.price * item.amount;
-        }, 0);
-        setTotalPrice(totalPrice.toFixed(2));
-        setAllData(data);
-      });
-  }, []);*/
 
   const removeItem = (index) => {
-    //TODO send post request to cart service to remove item from cart
+    axios
+      .request({
+        method: "delete",
+        url: "http://localhost:8090/api/cart/" + allData[index].uuid,
+      })
+      .then((response) => {
+        console.log(response);
+      });
     const newData = [...allData];
     newData.splice(index, 1);
     setAllData(newData);
@@ -96,8 +75,8 @@ function CartPage() {
       return total + item.price * item.amount;
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
-  }
-
+    window.location.reload();
+  };
   const ColoredLine = ({ color }) => (
     <hr
       style={{
@@ -119,7 +98,6 @@ function CartPage() {
                 <h5>Not ready to checkout? Continue Shopping</h5>
               </h1>
             </Row>
-            {/* TODO: [K2P-22] this values need to be from the database*/}
             {Array.from({ length: count }).map((_, idx) => (
               <Row key={idx}>
                 <Col>
@@ -130,10 +108,11 @@ function CartPage() {
                     <Row>{allData[idx].name}</Row>
                   </strong>
                   <Row>Size: 100mg</Row>
-                  {/* TODO set Quantity and price to the result of the real request*/}
                   <Row>Quantity: {allData[idx].amount}</Row>
                   <strong>
-                    <Row className="price">€ {(allData[idx].price * allData[idx].amount).toFixed(2)}</Row>
+                    <Row className="price">
+                      € {(allData[idx].price * allData[idx].amount).toFixed(2)}
+                    </Row>
                   </strong>
                 </Col>
                 <Col>
@@ -166,7 +145,6 @@ function CartPage() {
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
                   <Accordion.Header>Shipping Options</Accordion.Header>
-                  {/*TODO: [K2P-23] Substitute Lorem ipsum*/}
                   <Accordion.Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
@@ -191,7 +169,6 @@ function CartPage() {
               <Form.Control type="email" placeholder="Enter coupon code here" />
             </Row>
             <Row>
-              {/*TODO: needs to be calculated later from items on left side (together with total)*/}
               <Col>Subtotal</Col>
               <Col>€{totalPrice}</Col>
             </Row>

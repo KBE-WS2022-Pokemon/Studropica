@@ -10,12 +10,8 @@ import {
   Form,
   ProgressBar,
 } from "react-bootstrap";
-
-import mainImage from "../images/grey.png";
 import axios, { all } from "axios";
-
 let stripePromise;
-
 const getStripe = () => {
   if (!stripePromise) {
     stripePromise = loadStripe(
@@ -26,35 +22,57 @@ const getStripe = () => {
 };
 
 function Shipping() {
-
   const [stripeError, setStripeError] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
-  //TODO instead of making request to product service i need to make request to cart service
+
   useEffect(() => {
     axios
       .request({
         method: "get",
-        url: "http://localhost:8090/api/product",
+        url: "http://localhost:8090/api/cart",
       })
       .then((response) => {
         const data = response.data;
-        setAllData(data);
-        setCount(data.length);
-
-        const totalPrice = data.reduce((total, item) => {
-          return total + item.price * item.amount;
-        }, 0);
-        setTotalPrice(totalPrice.toFixed(2));
-        setAllData(data);
+        Promise.all(
+          data.map((item) =>
+            axios
+              .request({
+                method: "get",
+                url: "http://localhost:8090/api/product/" + item.uuid,
+              })
+              .then((response) => {
+                item.imageUrl = response.data.imageUrl;
+                return item;
+              })
+          )
+        )
+          .then((modifiedData) => {
+            setAllData(modifiedData);
+            setCount(modifiedData.length);
+            const totalPrice = modifiedData.reduce((total, item) => {
+              return total + item.price * item.amount;
+            }, 0);
+            setTotalPrice(totalPrice.toFixed(2));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
   }, []);
 
   const removeItem = (index) => {
-    //TODO send post request to cart service to remove item from cart
+    axios
+      .request({
+        method: "delete",
+        url: "http://localhost:8090/api/cart/" + allData[index].uuid,
+      })
+      .then((response) => {
+        console.log(response);
+      });
     const newData = [...allData];
     newData.splice(index, 1);
     setAllData(newData);
@@ -63,8 +81,9 @@ function Shipping() {
       return total + item.price * item.amount;
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
-  }
-  
+    window.location.reload();
+  };
+
   const item = {
     price: "price_1M58zVE7jIbDinv8crv6PIeR",
     quantity: 1,
@@ -78,6 +97,28 @@ function Shipping() {
   };
 
   const redirectToCheckout = async () => {
+    const selectedOptions = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    if (selectedOptions.length === 0) {
+      alert("Please select one of the options");
+      return;
+    }
+    const shippingOption = selectedOptions[0].value;
+    const formData = {
+      ...formData,
+      shippingOption: shippingOption,
+    };
+    axios
+      .request({
+        method: "post",
+        url: "http://localhost:8090/api/checkout/address",
+        data: formData,
+      })
+      .catch((error) => {
+        alert("Error sending form data. Please try again later.");
+      });
+
     setLoading(true);
     console.log("redirectToCheckout");
 
@@ -91,9 +132,6 @@ function Shipping() {
 
   if (stripeError) alert(stripeError);
 
-  function decreaseCount() {
-    setCount(count - 1);
-  }
   return (
     <Container>
       <Row className="mt-5">
@@ -153,7 +191,7 @@ function Shipping() {
             {Array.from({ length: count }).map((_, idx) => (
               <Row>
                 <Col>
-                  <Image src={allData[idx].image} width={100} height={100} />
+                  <Image src={allData[idx].imageUrl} width={100} height={100} />
                 </Col>
                 <Col>
                   <strong>
@@ -162,7 +200,9 @@ function Shipping() {
                   <Row>Size: 100mg</Row>
                   <Row>Quantity: {allData[idx].amount}</Row>
                   <strong>
-                    <Row className="price">€ {(allData[idx].price * allData[idx].amount).toFixed(2)}</Row>
+                    <Row className="price">
+                      € {(allData[idx].price * allData[idx].amount).toFixed(2)}
+                    </Row>
                   </strong>
                 </Col>
                 <Col>
