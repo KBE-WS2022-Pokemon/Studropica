@@ -7,19 +7,29 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import Keycloak from "keycloak-js";
 
-/*const keycloak = new Keycloak({
-  url: "http://localhost:8080/auth",
-  realm: "Studropica",
-  clientId: "frontend_client",
-  pkceMethod: 'S256'
-});*/
-
 import { getUser, login, logout } from "../auth_helper";
 
 const Navigation = ({ cartCount }) => {
-  const logins = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = getUser();
+    setIsLoggedIn(user !== null);
+  }, []);
+
+  const handleLogin = () => {
     login();
-  };  
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    login();
+    setIsLoggedIn(false);
+  };
+
+  /*const logins = () => {
+    login();
+  };'*/
   return (
     <Navbar bg="light" expand="lg" className="fixed-top">
       <Navbar.Brand as={Link} to="/">
@@ -53,7 +63,11 @@ const Navigation = ({ cartCount }) => {
               </svg>
             </Nav.Link>
           </LinkContainer>
-          <Nav.Link href="#login" onClick={logins}>Login</Nav.Link>
+          {isLoggedIn ? (
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+          ) : (
+            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

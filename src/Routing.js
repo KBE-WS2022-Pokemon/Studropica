@@ -18,6 +18,8 @@ import Checkout from "./Checkout/Checkout";
 import Cancel from "./Checkout/Cancel";
 import Success from "./Checkout/Success";
 
+import Login from "./Login";
+
 
 
 const Routing = () => {
@@ -29,6 +31,7 @@ const Routing = () => {
       <Route path="/" component={Footer} />
       <Route path="/shop" component={Main} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/login" component={Login} />
     </Routes>
   );
 };

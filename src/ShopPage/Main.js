@@ -7,7 +7,8 @@ import "./Main.css";
 import { useContext } from "react";
 import { ProductContext } from "../Context/ProductContext";
 
-import axios, { all } from "axios";
+//import axios, { all } from "axios";
+import axios from '../axiosInterceptor';
 
 import { getUser } from '../auth_helper';
 

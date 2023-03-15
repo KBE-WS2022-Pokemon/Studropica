@@ -21,6 +21,25 @@ import { ProductContext } from "../Context/ProductContext";
 
 import Navigation from "../LandingPage/Navigation";
 
+import { getUser } from '../auth_helper';
+
+const getHeaderWithUserToken = () => {
+  return getUser().then(user => {
+        if (user && user.access_token) {
+            const headers = {
+            Accept: "application/json",
+            Authorization: "Bearer " + user.access_token
+            };
+            return headers;
+        } else {
+            throw new Error('user is not logged in');
+        }
+    });
+}
+
+const header = getHeaderWithUserToken()
+
+
 function ProductPage() {
   const [cartCount, setCartCount] = useState(0);
   //now i have the id and need to get based on the id the product
@@ -40,6 +59,9 @@ function ProductPage() {
   const url = window.location.href;
   const urlArray = url.split("/");
   const urlLastElement = urlArray[urlArray.length - 1];
+
+
+ 
 
   //TODO add POST request with Item ID and amount (getting back if products available or not)
   useEffect(() => {
@@ -134,6 +156,8 @@ function ProductPage() {
 
   //function for setting
   //take id from url and send it with count to cart service 
+
+ 
   function handleAmount() {
     if (count <= allAmounts) {
       console.log("drin");
@@ -143,8 +167,9 @@ function ProductPage() {
         method: "post",
         url: url,
         data: {
-          amountBought: count,
+          amountBought: count
         },
+        headers: header
       })
     } else {
       alert("Not enough items in stock");
