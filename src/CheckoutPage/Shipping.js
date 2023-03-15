@@ -28,6 +28,7 @@ function Shipping() {
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
+  const [formData, setFormData] = useState({});
 
   useEffect(() => {
     axios
@@ -105,19 +106,21 @@ function Shipping() {
       return;
     }
     const shippingOption = selectedOptions[0].value;
-    const formData = {
+    setFormData({
       ...formData,
       shippingOption: shippingOption,
-    };
-    axios
-      .request({
+    });
+  
+    try {
+      await axios.request({
         method: "post",
         url: "http://localhost:8090/api/checkout/address",
         data: formData,
-      })
-      .catch((error) => {
-        alert("Error sending form data. Please try again later.");
       });
+    } catch (error) {
+      alert("Error sending form data. Please try again later.");
+      return;
+    }
 
     setLoading(true);
     console.log("redirectToCheckout");
