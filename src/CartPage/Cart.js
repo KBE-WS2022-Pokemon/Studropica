@@ -27,25 +27,6 @@ function CartPage() {
   //make request to cart service and see if it works --> should display all items in cart
   //request is working - now i need to check how i can display data
 
-  //need to write a function where the input is the json from the cart service and a
-  function addImageUrls(data) {
-    data.forEach((item) => {
-      axios
-        .request({
-          method: "get",
-          url: "http://localhost:8090/api/product/" + item.uuid,
-        })
-        .then((response) => {
-          const image = response.data.imageUrl;
-          item.imageUrl = image;
-        });
-    });
-    return data;
-  }
-
-  //problem is that images still not getting displayed.
-
-  //iam confused why useEffect is not working
   useEffect(() => {
     axios
       .request({
@@ -54,16 +35,33 @@ function CartPage() {
       })
       .then((response) => {
         let data = response.data;
-        data = addImageUrls(data);
-        setCount(data.length);
-        const totalPrice = data.reduce((total, item) => {
-          return total + item.price * item.amount;
-        }, 0);
-        setTotalPrice(totalPrice.toFixed(2));
-        setAllData(data);
-        console.log(allData);
+        Promise.all(
+          data.map((item) =>
+            axios
+              .request({
+                method: "get",
+                url: "http://localhost:8090/api/product/" + item.uuid,
+              })
+              .then((response) => {
+                item.imageUrl = response.data.imageUrl;
+                return item;
+              })
+          )
+        )
+          .then((modifiedData) => {
+            setAllData(modifiedData);
+            setCount(modifiedData.length);
+            const totalPrice = modifiedData.reduce((total, item) => {
+              return total + item.price * item.amount;
+            }, 0);
+            setTotalPrice(totalPrice.toFixed(2));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
   }, []);
+  
 
   //i am requesting the card service to get the data but the image url is missing
   //i can send a seperate request to 

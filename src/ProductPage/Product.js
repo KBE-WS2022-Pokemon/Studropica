@@ -21,25 +21,6 @@ import { ProductContext } from "../Context/ProductContext";
 
 import Navigation from "../LandingPage/Navigation";
 
-import { getUser } from '../auth_helper';
-
-const getHeaderWithUserToken = () => {
-  return getUser().then(user => {
-        if (user && user.access_token) {
-            const headers = {
-            Accept: "application/json",
-            Authorization: "Bearer " + user.access_token
-            };
-            return headers;
-        } else {
-            throw new Error('user is not logged in');
-        }
-    });
-}
-
-const header = getHeaderWithUserToken()
-
-
 function ProductPage() {
   const [cartCount, setCartCount] = useState(0);
   //now i have the id and need to get based on the id the product
@@ -168,12 +149,12 @@ function ProductPage() {
         url: url,
         data: {
           amountBought: count
-        },
-        headers: header
+        }
       })
     } else {
       alert("Not enough items in stock");
     }
+    setCount(1);
   }
 
   function handlePrice(e) {
