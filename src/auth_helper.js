@@ -1,7 +1,7 @@
 import { UserManager } from 'oidc-client';
 
 const settings = {
-    authority: "http://localhost:8080/auth/realms/Studropica",
+    authority: "http://keycloak:8080/auth/realms/Studropica",
     client_id: "frontend_client",
     redirect_uri: "http://localhost:3000/signin-callback.html",
     signinRedirect: "http://localhost:3000/signin-callback.html",
