@@ -10,26 +10,23 @@ import Keycloak from "keycloak-js";
 import { getUser, login, logout } from "../auth_helper";
 
 const Navigation = ({ cartCount }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState("Login");
 
   useEffect(() => {
     const user = getUser();
-    setIsLoggedIn(user !== null);
+    setIsLoggedIn(user !== null ? "Logout" : "Login");
   }, []);
 
-  const handleLogin = () => {
-    login();
-    setIsLoggedIn(true);
+  const handleLogin = async () => {
+    if (isLoggedIn === "Login") {
+      await login();
+      const user = getUser();
+      setIsLoggedIn(user !== null ? "Logout" : "Login");
+    } else {
+      setIsLoggedIn("Login");
+    }
   };
 
-  const handleLogout = () => {
-    login();
-    setIsLoggedIn(false);
-  };
-
-  /*const logins = () => {
-    login();
-  };'*/
   return (
     <Navbar bg="light" expand="lg" className="fixed-top">
       <Navbar.Brand as={Link} to="/">
@@ -63,11 +60,7 @@ const Navigation = ({ cartCount }) => {
               </svg>
             </Nav.Link>
           </LinkContainer>
-          {isLoggedIn ? (
-            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-          ) : (
-            <Nav.Link onClick={handleLogin}>Login</Nav.Link>
-          )}
+          <Nav.Link onClick={handleLogin}>{isLoggedIn}</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

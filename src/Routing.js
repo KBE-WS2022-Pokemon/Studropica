@@ -20,7 +20,7 @@ import Success from "./Checkout/Success";
 
 import Login from "./Login";
 
-
+import Payment from "./CheckoutPage/Payment";
 
 const Routing = () => {
   return (
@@ -31,6 +31,7 @@ const Routing = () => {
       <Route path="/" component={Footer} />
       <Route path="/shop" component={Main} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/payment" component={Payment} />
       <Route path="/login" component={Login} />
     </Routes>
   );

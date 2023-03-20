@@ -28,6 +28,7 @@ import Product from "./ProductPage/Product";
 import Cart from "./CartPage/Cart";
 
 //keycloak
+import Payment from "./CheckoutPage/Payment";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,6 +41,7 @@ ReactDOM.render(
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/shipping" element={<Shipping />} />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   </React.StrictMode>,

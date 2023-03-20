@@ -16,6 +16,7 @@ const getStripe = () => {
   if (!stripePromise) {
     stripePromise = loadStripe(
       "pk_test_51KG40qE7jIbDinv8gi3HDYthubVs4gc3dGbpBzoyQG47Cddes3hZvy0GokC5nmikjZSwODOLVfzLRg3OEAQG5qpM00f6MvchPX"
+      //"pk_test_51MdC6xHYvapymDO9uPTwAf3jp3vyrYLCsVAfszQwdF7SaK6d7mCp4owvWHbjQmCmLEIio5Pn7XSTr8v9xTBO39pU000frhtkqo"
     );
   }
   return stripePromise;
@@ -79,7 +80,8 @@ function Shipping() {
     setAllData(newData);
     setCount(newData.length);
     const totalPrice = newData.reduce((total, item) => {
-      return total + item.price * item.amount;
+      //return total + item.price * item.amount;
+
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
     window.location.reload();
@@ -93,7 +95,7 @@ function Shipping() {
   const checkoutOptions = {
     lineItems: [item],
     mode: "payment",
-    successUrl: `${window.location.origin}/success`,
+    successUrl: `${window.location.origin}/`,
     cancelUrl: `${window.location.origin}/cancel`,
   };
 
@@ -124,6 +126,9 @@ function Shipping() {
 
     setLoading(true);
     console.log("redirectToCheckout");
+
+    //load payment site
+    //window.location.href = "http://localhost:3000/payment";
 
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
