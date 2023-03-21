@@ -1,4 +1,3 @@
-// todo when navbar collapses bug with card item
 import React, { useContext, useState, useEffect } from "react";
 import { Navbar, Nav, Form, FormControl, NavDropdown } from "react-bootstrap";
 import "./Navigation.css";

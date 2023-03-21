@@ -36,15 +36,10 @@ function ProductPage() {
   const [allPrices, setAllPrices] = useState([]);
   const [allImages, setAllImages] = useState([]);
   const [allDescriptions, setAllDescriptions] = useState([]);
-  //get last elements after / in url and set url to / + this element
   const url = window.location.href;
   const urlArray = url.split("/");
   const urlLastElement = urlArray[urlArray.length - 1];
 
-
- 
-
-  //TODO add POST request with Item ID and amount (getting back if products available or not)
   useEffect(() => {
     axios
       .request({
@@ -67,7 +62,6 @@ function ProductPage() {
   }, []);
 
   const [count, setCount] = useState(1);
-  //TODO: [K2P-26] set price to appropriate product price from datbase
   const [price, setPrice] = useState(allPrices);
 
   function handleQuantity(e) {
@@ -78,70 +72,9 @@ function ProductPage() {
     }
     handlePrice(e.target.value);
   }
-
-  //currently on click of addd to cart button only amount is displayed on top
-  //innstead i need to send a post request to cart service with the id of the product and the amount
-  //i send id and amount to cart -- in cart there needs to be a storage of all the items
-
-  /*useEffect(() => {
-    axios
-      .request({
-        method: "post",
-        url: "http://localhost:8090/api/cart",
-        data: {
-          id: urlLastElement,
-          amount: count,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  }, [count]);*/
-  //TODO send a post request to cart service and add a prodcut with id
-  //requesrt
-  /*useEffect(() => {
-    axios
-      .request({
-        method: "post",
-        url: "http://localhost:8090/api/product/cart/2af2bb11-7583-4f26-af1f-f39dba961750",
-        data: {
-          amountBought: 1,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  }, [count]);*/
-
-  /*useEffect(() => {
-    axios
-      .request({
-        method: "delete",
-        url: "http://localhost:8090/api/cart/2af2bb11-7583-4f26-af1f-f39dba961750"
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  }, [count]);
-
-  useEffect(() => {
-    axios
-      .request({
-        method: "get",
-        url: "http://localhost:8090/api/cart"
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  }, [count]);*/
-
-  //function for setting
-  //take id from url and send it with count to cart service 
-
  
   function handleAmount() {
     if (count <= allAmounts) {
-      console.log("drin");
       const url = `http://localhost:8090/api/product/cart/${urlLastElement}`;
       axios
       .request({
@@ -158,7 +91,6 @@ function ProductPage() {
   }
 
   function handlePrice(e) {
-    //TODO: [K2P-27] 100 should be the value from the price of the choosen product from the database
     if (e === "+") {
       setPrice(((count + 1) * allPrices).toFixed(2));
     } else if (e === "-" && count > 1) {

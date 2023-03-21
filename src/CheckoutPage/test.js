@@ -19,7 +19,6 @@ import Shipping from "./Shipping";
 // TODO: [K2P-24] get here like on cart site products from database and display calc steps based on that.
 
 function Checkout() {
-  console.log("hallo-1");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
@@ -30,9 +29,7 @@ function Checkout() {
   const [check, setChecked] = useState("no");
 
   const navigate = useNavigate();
-  console.log("hallo-2");
   const [count, setCount] = useState(3);
-  console.log("hallo-3");
 
   const [allData, setAllData] = useState([]);
 
@@ -47,13 +44,9 @@ function Checkout() {
         url: "http://localhost:8090/api/product",
       })
       .then((response) => {
-        console.log("hallo0");
         const data = response.data;
-        console.log("hallo1");
         setAllData(data);
-        console.log("hallo2");
         setCount(data.length);
-        console.log("hallo3");
 
         const totalPrice = data.reduce((total, item) => {
           return total + item.price * item.amount;

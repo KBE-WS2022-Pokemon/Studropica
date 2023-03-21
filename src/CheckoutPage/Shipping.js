@@ -16,7 +16,6 @@ const getStripe = () => {
   if (!stripePromise) {
     stripePromise = loadStripe(
       "pk_test_51KG40qE7jIbDinv8gi3HDYthubVs4gc3dGbpBzoyQG47Cddes3hZvy0GokC5nmikjZSwODOLVfzLRg3OEAQG5qpM00f6MvchPX"
-      //"pk_test_51MdC6xHYvapymDO9uPTwAf3jp3vyrYLCsVAfszQwdF7SaK6d7mCp4owvWHbjQmCmLEIio5Pn7XSTr8v9xTBO39pU000frhtkqo"
     );
   }
   return stripePromise;
@@ -81,19 +80,10 @@ function Shipping() {
     setCount(newData.length);
     const totalPrice = newData.reduce((total, item) => {
       //return total + item.price * item.amount;
-
     }, 0);
     setTotalPrice(totalPrice.toFixed(2));
     window.location.reload();
   };
-
-  /*const checkoutOptions = {
-    lineItems: [item],
-    mode: "payment",
-    successUrl: `${window.location.origin}/`,
-    cancelUrl: `${window.location.origin}/cancel`,
-  };*/
-  //add all items
   const myDict = {
     "Pramiracetam": "price_1MnscpE7jIbDinv8wMAck6ke",
     "Phenylpiracetam": "price_1MnrsnE7jIbDinv8YWZgcJXU",
@@ -107,21 +97,17 @@ function Shipping() {
     "Sulbutiamine": "price_1MntEuE7jIbDinv8sSG80Y3m",
     "Alpha-GPC": "price_1MntFCE7jIbDinv8hMOH2kOB",
     "Sunifiram": "price_1MntDjE7jIbDinv8XQzLOkQg",
+    "Fasoracetam": "price_1MntCcE7jIbDinv89qeoNVyc"
   };
 
-  //create items based on items in card. match name from card items with myDict and than create items with respective ids and add amount form cart
-  //request cart
   const newItems = [];
   const items = () => {
-    console.log(allData);
     for (let i = 0; i < allData.length; i++) {
-      console.log(allData[i].itemName)
       const item = {
         price: myDict[allData[i].itemName],
         quantity: allData[i].amount,
       };
       newItems.push(item);
-      console.log(item);
     }
   }
   //need a list with all names and respective product ids. how can i do this? can do a list here where i store them al
@@ -145,7 +131,6 @@ function Shipping() {
   };
 
   const redirectToCheckout = async () => {
-    //how can i call this request now after i had success with my checkout
     const selectedOptions = document.querySelectorAll(
       'input[type="checkbox"]:checked'
     );
@@ -172,16 +157,10 @@ function Shipping() {
     setLoading(true);
     items();
     console.log("redirectToCheckout");
-    //call checkoutoptions 
     const options = checkoutOptions
-    console.log("before");
-    console.log(options);
     emptyCart();
-    console.log("after");
-    console.log(options);
     const stripe = await getStripe();
     const { error, result } = await stripe.redirectToCheckout(options);
-    console.log("das ist eion rte!");
     console.log("Stripe checkout error", error);
     if (error) setStripeError(error.message);
     setLoading(false);

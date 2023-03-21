@@ -2,8 +2,6 @@ import React from "react";
 import { Button, Row, Col, Stack, Image } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-//import mainImage from "../images/grey.png";
-//this tis just some test
 import htwImage from "../images/htw_berlin.png";
 import chariteImage from "../images/charite.png";
 import tuImage from "../images/tu_berlin.png";
@@ -12,13 +10,7 @@ import mainImage from "../images/main.webp";
 import axios from 'axios';
 
 const MainStartScreen = () => {
-  /*axios.request({
-    method: 'get',
-    url: 'http://localhost:8090/product/1',
-  }).then(response => {
-    console.log(response.data);
-  });*/
-  
+
   return (
     <Stack gap={5} className="mt-5">
       <div id="top" className="text-center mt-5">
