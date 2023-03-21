@@ -25,7 +25,6 @@ const getStripe = () => {
 function Shipping() {
   const [stripeError, setStripeError] = useState(null);
   const [isLoading, setLoading] = useState(false);
-
   const [count, setCount] = useState(0);
   const [allData, setAllData] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
@@ -66,6 +65,7 @@ function Shipping() {
       });
   }, []);
 
+
   const removeItem = (index) => {
     axios
       .request({
@@ -87,7 +87,6 @@ function Shipping() {
     window.location.reload();
   };
 
-
   /*const checkoutOptions = {
     lineItems: [item],
     mode: "payment",
@@ -106,10 +105,9 @@ function Shipping() {
     "Modafinil": "price_1MntETE7jIbDinv8onCTTm8J",
     "Phenibut": "price_1MntEhE7jIbDinv81jk6wS0e",
     "Sulbutiamine": "price_1MntEuE7jIbDinv8sSG80Y3m",
-    "Alpha GPC": "price_1MntFCE7jIbDinv8hMOH2kOB",
+    "Alpha-GPC": "price_1MntFCE7jIbDinv8hMOH2kOB",
     "Sunifiram": "price_1MntDjE7jIbDinv8XQzLOkQg",
   };
-
 
   //create items based on items in card. match name from card items with myDict and than create items with respective ids and add amount form cart
   //request cart
@@ -131,10 +129,23 @@ function Shipping() {
     lineItems: newItems,
     mode: "payment",
     successUrl: `${window.location.origin}/`,
-    cancelUrl: `${window.location.origin}/cancel`,
+    cancelUrl: `${window.location.origin}/`,
+  };
+  const emptyCart = () => {
+    for (let i = 0; i < allData.length; i++) {
+      axios
+        .request({
+          method: "delete",
+          url: "http://localhost:8090/api/cart/" + allData[i].uuid,
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    }
   };
 
   const redirectToCheckout = async () => {
+    //how can i call this request now after i had success with my checkout
     const selectedOptions = document.querySelectorAll(
       'input[type="checkbox"]:checked'
     );
@@ -158,18 +169,20 @@ function Shipping() {
       alert("Error sending form data. Please try again later.");
       return;
     }
-
     setLoading(true);
     items();
-    console.log(newItems);
     console.log("redirectToCheckout");
-    
-    //load payment site
-    //window.location.href = "http://localhost:3000/payment";
+    //call checkoutoptions 
+    const options = checkoutOptions
+    console.log("before");
+    console.log(options);
+    emptyCart();
+    console.log("after");
+    console.log(options);
     const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    const { error, result } = await stripe.redirectToCheckout(options);
+    console.log("das ist eion rte!");
     console.log("Stripe checkout error", error);
-
     if (error) setStripeError(error.message);
     setLoading(false);
   };
@@ -239,7 +252,7 @@ function Shipping() {
                 </Col>
                 <Col>
                   <strong>
-                    <Row>{allData[idx].name}</Row>
+                    <Row>{allData[idx].itemName}</Row>
                   </strong>
                   <Row>Size: 100mg</Row>
                   <Row>Quantity: {allData[idx].amount}</Row>

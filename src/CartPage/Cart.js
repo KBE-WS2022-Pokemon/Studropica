@@ -105,7 +105,7 @@ function CartPage() {
                 </Col>
                 <Col>
                   <strong>
-                    <Row>{allData[idx].name}</Row>
+                    <Row>{allData[idx].itemName}</Row>
                   </strong>
                   <Row>Size: 100mg</Row>
                   <Row>Quantity: {allData[idx].amount}</Row>

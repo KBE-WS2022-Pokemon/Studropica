@@ -29,7 +29,7 @@ const ShopPage = () => {
   }).catch(error => {
   });
 
-
+  //only display 12 products
   //request is failing because ps not running. if service would be up and running it should work 
   const [allNames, setAllNames] = useState([]);
   const [allPrices, setAllPrices] = useState([]);
@@ -44,10 +44,11 @@ const ShopPage = () => {
       .then((response) => {
         console.log("response");
         console.log(response.data);
-        const names = response.data.map((product) => product.name);
-        const prices = response.data.map((product) => product.price);
-        const images = response.data.map((product) => product.imageUrl);
-        const ids = response.data.map((product) => product.uuid);
+        //only display 12 products
+        const names = response.data.map((product) => product.name).slice(0, 12);
+        const prices = response.data.map((product) => product.price).slice(0, 12);
+        const images = response.data.map((product) => product.imageUrl).slice(0, 12);
+        const ids = response.data.map((product) => product.uuid).slice(0, 12);
         console.log(ids)
         setAllIds(ids);
         setAllNames(names);
