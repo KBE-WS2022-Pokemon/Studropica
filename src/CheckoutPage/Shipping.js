@@ -87,13 +87,48 @@ function Shipping() {
     window.location.reload();
   };
 
-  const item = {
-    price: "price_1M58zVE7jIbDinv8crv6PIeR",
-    quantity: 1,
+
+  /*const checkoutOptions = {
+    lineItems: [item],
+    mode: "payment",
+    successUrl: `${window.location.origin}/`,
+    cancelUrl: `${window.location.origin}/cancel`,
+  };*/
+  //add all items
+  const myDict = {
+    "Pramiracetam": "price_1MnscpE7jIbDinv8wMAck6ke",
+    "Phenylpiracetam": "price_1MnrsnE7jIbDinv8YWZgcJXU",
+    "Aniracetam": "price_1MntBpE7jIbDinv851B2oWvT",
+    "Oxiracetam": "price_1MntCCE7jIbDinv8kgdF2hNO",
+    "Piracetam": "price_1MntCWE7jIbDinv8QZ5Z2Z7r",
+    "Noopept": "price_1MntDyE7jIbDinv8DQ1W8IWB",
+    "Adrafinil": "price_1MntEDE7jIbDinv87FHGeCuV",
+    "Modafinil": "price_1MntETE7jIbDinv8onCTTm8J",
+    "Phenibut": "price_1MntEhE7jIbDinv81jk6wS0e",
+    "Sulbutiamine": "price_1MntEuE7jIbDinv8sSG80Y3m",
+    "Alpha GPC": "price_1MntFCE7jIbDinv8hMOH2kOB",
+    "Sunifiram": "price_1MntDjE7jIbDinv8XQzLOkQg",
   };
 
+
+  //create items based on items in card. match name from card items with myDict and than create items with respective ids and add amount form cart
+  //request cart
+  const newItems = [];
+  const items = () => {
+    console.log(allData);
+    for (let i = 0; i < allData.length; i++) {
+      console.log(allData[i].itemName)
+      const item = {
+        price: myDict[allData[i].itemName],
+        quantity: allData[i].amount,
+      };
+      newItems.push(item);
+      console.log(item);
+    }
+  }
+  //need a list with all names and respective product ids. how can i do this? can do a list here where i store them al
   const checkoutOptions = {
-    lineItems: [item],
+    lineItems: newItems,
     mode: "payment",
     successUrl: `${window.location.origin}/`,
     cancelUrl: `${window.location.origin}/cancel`,
@@ -112,7 +147,7 @@ function Shipping() {
       ...formData,
       shippingOption: shippingOption,
     });
-  
+
     try {
       await axios.request({
         method: "post",
@@ -125,11 +160,12 @@ function Shipping() {
     }
 
     setLoading(true);
+    items();
+    console.log(newItems);
     console.log("redirectToCheckout");
-
+    
     //load payment site
     //window.location.href = "http://localhost:3000/payment";
-
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout(checkoutOptions);
     console.log("Stripe checkout error", error);
